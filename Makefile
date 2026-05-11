@@ -36,7 +36,6 @@ qmk-flash:
 
 qmk-init-all:
 	kb=crkbd make qmk-init
-	kb=lskbd make qmk-init
 
 qmk-compile-all:
 	kb=crkbd kr=rev1 km=via make qmk-compile
@@ -44,7 +43,6 @@ qmk-compile-all:
 	kb=crkbd kr=rev4_0/mini km=via make qmk-compile
 	kb=crkbd kr=rev4_1/standard km=via make qmk-compile
 	kb=crkbd kr=rev4_1/mini km=via make qmk-compile
-	kb=lskbd kr=rev1 km=via make qmk-compile
 
 vial-qmk-clean:
 	rm -rf src/vial-kb/vial-qmk/keyboards/tmp
@@ -76,14 +74,12 @@ vial-qmk-flash:
 
 vial-qmk-init-all:
 	kb=crkbd make vial-qmk-init
-	kb=lskbd make vial-qmk-init
 
 vial-qmk-compile-all:
 	kb=crkbd kr=rev4_0/standard km=vial make vial-qmk-compile
 	kb=crkbd kr=rev4_0/mini km=vial_mini make vial-qmk-compile
 	kb=crkbd kr=rev4_1/standard km=vial make vial-qmk-compile
 	kb=crkbd kr=rev4_1/mini km=vial_mini make vial-qmk-compile
-	kb=lskbd kr=rev1 km=vial make vial-qmk-compile
 
 update-all:
 	make git-submodule

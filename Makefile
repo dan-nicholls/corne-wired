@@ -44,7 +44,7 @@ qmk-compile-all:
 	kb=crkbd kr=rev4_0/mini km=via make qmk-compile
 	kb=crkbd kr=rev4_1/standard km=via make qmk-compile
 	kb=crkbd kr=rev4_1/mini km=via make qmk-compile
-	kb=dankbd kr=rev1 km=via make qmk-compile
+	kb=dankbd kr=rev1 km=default make qmk-compile
 
 vial-qmk-clean:
 	rm -rf src/vial-kb/vial-qmk/keyboards/tmp

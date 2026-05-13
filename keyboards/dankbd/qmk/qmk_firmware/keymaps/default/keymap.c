@@ -1,11 +1,20 @@
 #include QMK_KEYBOARD_H
 
+#define HRM_A LCTL_T(KC_A)
+#define HRM_S LALT_T(KC_S)
+#define HRM_D LGUI_T(KC_D)
+#define HRM_F LSFT_T(KC_F)
+#define HRM_J RSFT_T(KC_J)
+#define HRM_K RGUI_T(KC_K)
+#define HRM_L RALT_T(KC_L)
+#define HRM_SCLN RCTL_T(KC_SCLN)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+      KC_LCTL,  HRM_A,  HRM_S,  HRM_D,  HRM_F,    KC_G,                         KC_H,  HRM_J,  HRM_K,  HRM_L, HRM_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -50,3 +59,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   )
 };
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case HRM_A:
+    case HRM_S:
+    case HRM_D:
+    case HRM_F:
+    case HRM_J:
+    case HRM_K:
+    case HRM_L:
+    case HRM_SCLN:
+      return 220;
+    default:
+      return TAPPING_TERM;
+  }
+}
+
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case HRM_A:
+    case HRM_S:
+    case HRM_D:
+    case HRM_F:
+    case HRM_J:
+    case HRM_K:
+    case HRM_L:
+    case HRM_SCLN:
+      return 175;
+    default:
+      return QUICK_TAP_TERM;
+  }
+}

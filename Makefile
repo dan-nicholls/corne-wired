@@ -1,6 +1,6 @@
 .PHONY: git-submodule, qmk-clean, qmk-init, qmk-compile, qmk-flash, qmk-init-all, qmk-compile-all, vial-qmk-clean, vial-qmk-init, vial-qmk-compile, vial-qmk-flash, vial-qmk-init-all, vial-qmk-compile-all, update-all
 
-KB := crkbd
+KB := dankbd
 KR := rev1
 KM := default
 

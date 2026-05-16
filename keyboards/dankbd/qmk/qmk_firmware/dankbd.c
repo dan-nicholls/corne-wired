@@ -9,24 +9,33 @@ oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
 }
 
 static void oled_render_layer_state(void) {
+    uint8_t active_layer = get_highest_layer(layer_state | default_layer_state);
+
     oled_write_P(PSTR("Layer: "), false);
-    switch (get_highest_layer(layer_state)) {
+    switch (active_layer) {
         case 0:
-            oled_write_ln_P(PSTR("Default"), false);
+            oled_write_P(PSTR("Default"), false);
             break;
         case 1:
-            oled_write_ln_P(PSTR("Lower"), false);
+            oled_write_P(PSTR("Lower"), false);
             break;
         case 2:
-            oled_write_ln_P(PSTR("Raise"), false);
+            oled_write_P(PSTR("Raise"), false);
             break;
         case 3:
-            oled_write_ln_P(PSTR("Adjust"), false);
+            oled_write_P(PSTR("Adjust"), false);
+            break;
+        case 4:
+            oled_write_P(PSTR("Game"), false);
             break;
         default:
-            oled_write_ln_P(PSTR("Undef"), false);
+            oled_write_P(PSTR("Undef"), false);
             break;
     }
+
+    oled_write_P(PSTR(" ("), false);
+    oled_write(get_u8_str(active_layer, ' '), false);
+    oled_write_ln_P(PSTR(")"), false);
 }
 
 char     key_name = ' ';

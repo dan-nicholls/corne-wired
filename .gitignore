@@ -3,3 +3,6 @@
 
 # idea
 .idea/*
+
+# builds
+**/.build/

@@ -1,40 +1,51 @@
 # KBD firmware
 
-## How to build
+`dankbd` is my personal layout for the Corne (`foostan/crkbd`). It adds home row
+mods and a hold-to-toggle game layer.
 
-## 1. Setting Up Your QMK Environment
+Home row mods on base layer (hold = modifier, tap = normal key):
 
-Please see https://docs.qmk.fm/#/newbs_getting_started and set up 1 to 3.
+- `A` = Ctrl
+- `S` = Alt
+- `D` = GUI
+- `F` = Shift
+- `J` = Shift
+- `K` = GUI
+- `L` = Alt
+- `;` = Ctrl
 
-## 2. Getting source files
+Game layer is a toggleable overlay that disables home row mods. Toggle it by
+holding both the `lower` and `upper` layer modifiers and the top-right key
+(Backspace position).
 
-Please get source files of `qmk/qmk_firmware` and `vial-kb/vial-qmk`
+## Build
+
 ```sh
+# one-time: get submodules
 make git-submodule
+
+# enter dev shell (qmk + dos2unix)
+nix-shell
+
+# build dankbd (rev1, default keymap)
+make qmk-init
+make qmk-compile
+
+# flash
+make qmk-flash
 ```
 
-## 3. Building firmwares
+Build artifacts are written to:
 
-### for VIA
+- `keyboards/dankbd/qmk/qmk_firmware/.build`
+
+## Other targets
 
 ```sh
-make qmk-clean
-kb=crkbd make qmk-init
+# build a specific target
+kb=<keyboard> kr=<revision> km=<keymap> make qmk-compile
+
+# examples
+kb=dankbd kr=rev1 km=default make qmk-compile
 kb=crkbd kr=rev4_1/standard km=via make qmk-compile
-```
-A built data will be stored on `keyboards/crkbd/qmk/qmk_firmware/.build`\
-Please change `kb`, `kr` and `km` when build other.
-
-### for Vial
-```sh
-make vial-qmk-clean
-kb=crkbd make vial-qmk-init
-kb=crkbd kr=rev4_1/standard km=vial make vial-qmk-compile
-```
-A built data will be stored on `keyboards/crkbd/vial-kb/vial-qmk/.build`\
-Please change `kb`, `kr` and `km` when build other.
-
-### All cleaning and building
-```sh
-make update-all
 ```
